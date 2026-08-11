@@ -39,8 +39,8 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between p-6 sm:p-10 md:p-16 selection:bg-purple-500 selection:text-white">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="max-w-5xl mx-auto w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <!-- HEADER / NAVIGATION (Volle Breite) -->
+    <header class="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
             <a href="index.html" class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
                 PROJECT<span class="text-purple-400">ZWIM</span><span class="text-purple-500">.</span>
@@ -55,52 +55,56 @@
         </nav>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="max-w-3xl mx-auto w-full my-16 sm:my-24 space-y-16">
+    <!-- MAIN CONTENT (Volle Breite) -->
+    <main class="w-full my-16 sm:my-24 space-y-20">
         
-        <!-- HERO / INTRO -->
+        <!-- HERO -->
         <section class="space-y-6">
             <div class="inline-block bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1.5 rounded-full">
                 Philosophie & Neuanfang
             </div>
             
-            <h1 class="text-5xl sm:text-7xl font-black tracking-tight uppercase leading-none">
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight uppercase leading-none">
                 Vom Kampf <br>
-                <span class="serif-italic text-purple-400 lowercase font-normal tracking-normal text-6xl sm:text-8xl glow-accent">zum Ankommen.</span>
+                <span class="serif-italic text-purple-400 lowercase font-normal tracking-normal text-6xl sm:text-8xl md:text-9xl glow-accent">zum Ankommen.</span>
             </h1>
         </section>
 
-        <!-- DER BLINDFLUG -->
-        <section class="space-y-6">
-            <h2 class="text-xl font-bold uppercase tracking-wide text-white">Lange Zeit war es ein Blindflug.</h2>
-            <p class="text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
-                Jahre vergingen, in denen ich mich fragte, warum ich oft gegen unsichtbare Wände lief. Warum Phasen von extremer Energie und kreativem Hochflug so plötzlich in vollkommene Stille umschlugen. Warum angefangene Projekte, die mir eigentlich viel bedeuteten, plötzlich ihre Anziehungskraft verloren – und warum sich das jedes Mal wie ein persönliches Scheitern anfühlte.
-            </p>
-        </section>
-
-        <!-- DIE ERKENNTNIS -->
-        <section class="bg-zinc-900/40 border border-purple-500/10 p-8 sm:p-10 rounded-3xl space-y-6">
-            <h2 class="text-xl font-bold uppercase tracking-wide text-purple-300">Der Moment, in dem der Groschen fiel.</h2>
-            <div class="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed font-light">
-                <p>
-                    Dann kam diese eine Erkenntnis. Ich begann zu verstehen, dass mein Kopf nicht „kaputt“ ist und ich nicht „unzuverlässig“ bin – ich funktioniere einfach anders. Dass das, was ich für Chaos hielt, eigentlich die Kombination aus zwei Welten in mir ist: <strong>Autismus und ADHS.</strong>
-                </p>
-                <p>
-                    Es war eine enorme Befreiung. Plötzlich ergab alles Sinn: Der autistische Drang nach Logik und tiefen, perfekten Systemen auf der einen Seite. Und auf der anderen die ADHS-Seite, die ständig neue Impulse braucht, aber unter Druck komplett zumacht.
+        <!-- GRID LAYOUT FÜR INHALTE (Volle Breite) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- BLINDFLUG -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-bold uppercase tracking-wide text-white border-l-2 border-purple-500 pl-4">Lange Zeit war es ein Blindflug.</h2>
+                <p class="text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
+                    Jahre vergingen, in denen ich mich fragte, warum ich oft gegen unsichtbare Wände lief. Warum Phasen von extremer Energie und kreativem Hochflug so plötzlich in vollkommene Stille umschlugen. Warum angefangene Projekte, die mir eigentlich viel bedeuteten, plötzlich ihre Anziehungskraft verloren – und warum sich das jedes Mal wie ein persönliches Scheitern anfühlte.
                 </p>
             </div>
-        </section>
 
-        <!-- DIE BEFREIUNG -->
-        <section class="space-y-6">
-            <h2 class="text-xl font-bold uppercase tracking-wide text-white">Der Schnitt: ProjectZWiM.</h2>
-            <div class="space-y-4 text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
-                <p>
-                    Mit dieser neuen Klarheit kam auch die Entscheidung, alte Kapitel zu schließen. Die Projekte, die mich früher belastet haben, weil sie nicht zu meinem Rhythmus passten, wurden beendet. Es war kein Aufgeben, sondern ein Aufräumen.
-                </p>
-                <p>
-                    <strong>ProjectZWiM</strong> ist das Ergebnis dieses Aufräumens. Es ist mein persönlicher Safe Space. Hier gibt es keine künstlichen Deadlines mehr, keine Erwartungen von außen und keinen Zwang, „funktionieren“ zu müssen. Ich habe gelernt, dass ich Dinge nicht für andere perfekt machen muss, sondern für mich selbst – nach meiner eigenen Fülle und Lust.
-                </p>
+            <!-- ERKENNTNIS -->
+            <div class="bg-zinc-900/40 border border-purple-500/10 p-8 rounded-3xl space-y-4 lg:col-span-2">
+                <h2 class="text-xl font-bold uppercase tracking-wide text-purple-300 border-l-2 border-purple-300 pl-4">Der Moment, in dem der Groschen fiel.</h2>
+                <div class="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed font-light">
+                    <p>
+                        Dann kam diese eine Erkenntnis. Ich begann zu verstehen, dass mein Kopf nicht „kaputt“ ist und ich nicht „unzuverlässig“ bin – ich funktioniere einfach anders. Dass das, was ich für Chaos hielt, eigentlich die Kombination aus zwei Welten in mir ist: <strong>Autismus und ADHS.</strong>
+                    </p>
+                    <p>
+                        Es war eine enorme Befreiung. Plötzlich ergab alles Sinn: Der autistische Drang nach Logik und tiefen, perfekten Systemen auf der einen Seite. Und auf der anderen die ADHS-Seite, die ständig neue Impulse braucht, aber unter Druck komplett zumacht.
+                    </p>
+                </div>
+            </div>
+
+            <!-- BEFREIUNG (Volle Breite) -->
+            <div class="lg:col-span-3 bg-zinc-900/20 p-8 rounded-3xl border border-white/5 space-y-6">
+                <h2 class="text-2xl font-bold uppercase tracking-wide text-white">Der Schnitt: ProjectZWiM.</h2>
+                <div class="max-w-4xl space-y-4 text-zinc-400 text-sm sm:text-base leading-relaxed font-light">
+                    <p>
+                        Mit dieser neuen Klarheit kam auch die Entscheidung, alte Kapitel zu schließen. Die Projekte, die mich früher belastet haben, weil sie nicht zu meinem Rhythmus passten, wurden beendet. Es war kein Aufgeben, sondern ein Aufräumen.
+                    </p>
+                    <p>
+                        <strong>ProjectZWiM</strong> ist das Ergebnis dieses Aufräumens. Es ist mein persönlicher Safe Space. Hier gibt es keine künstlichen Deadlines mehr, keine Erwartungen von außen und keinen Zwang, „funktionieren“ zu müssen. Ich habe gelernt, dass ich Dinge nicht für andere perfekt machen muss, sondern für mich selbst – nach meiner eigenen Fülle und Lust.
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -114,7 +118,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="max-w-5xl mx-auto w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-white/5 text-[10px] text-zinc-600 uppercase tracking-widest">
+    <footer class="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-white/5 text-[10px] text-zinc-600 uppercase tracking-widest">
         <div>
             ProjectZWiM // Entwickelt nach eigener Fülle & Lust.
         </div>
