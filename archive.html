@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive // ProjectZWiM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+        
+        body { background-color: #09090b; color: #f4f4f5; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .serif-italic { font-family: 'Instrument Serif', serif; font-style: italic; }
+        .nav-link { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; color: #71717a; transition: color 0.3s; }
+        .nav-link:hover { color: #c084fc; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-6 sm:p-10 md:p-16 selection:bg-purple-500 selection:text-white">
+
+    <!-- HEADER -->
+    <header class="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <a href="index.html" class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
+                PROJECT<span class="text-purple-400">ZWIM</span><span class="text-purple-500">.</span>
+            </a>
+            <p class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 font-bold mt-0.5">Zwei Welten in Mir</p>
+        </div>
+        <nav class="flex items-center gap-8">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="archive.html" class="nav-link text-purple-400">Archive</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="w-full my-16 sm:my-24 space-y-12">
+        <section class="space-y-4">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight uppercase">Archive</h1>
+            <p class="text-zinc-400 max-w-xl text-lg font-light">
+                Hier liegen die Projekte, die in der Zeit vor meiner 
+                <a href="about.html" class="text-purple-400 underline underline-offset-4 decoration-purple-500/30 hover:text-purple-300">neuen Erkenntnis über mich selbst</a> 
+                entstanden sind. Es sind Kapitel, die ich abgeschlossen habe, aber dennoch bewahre.
+            </p>
+        </section>
+
+        <!-- PROJECT GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Tripsdrill -->
+            <div class="bg-zinc-900/40 border border-white/5 p-8 rounded-3xl group hover:border-purple-500/20 transition-all flex flex-col justify-between">
+                <div class="space-y-4">
+                    <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Projekt // 01</span>
+                    <h2 class="text-2xl font-bold uppercase text-white">Tripsdrill Page</h2>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Ein tiefer Einblick in die Welt der Fahrgeschäfte. Dieses Projekt war geprägt von dem Wunsch, alles zu strukturieren und genau zu erfassen.
+                    </p>
+                </div>
+                <div class="mt-8">
+                    <a href="https://booksapplications.github.io/tripsdrillpage/" target="_blank" class="inline-block bg-white text-black text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-purple-400 transition-all">
+                        Zum Archiv-Projekt →
+                    </a>
+                </div>
+            </div>
+
+            <!-- DarkCanvas -->
+            <div class="bg-zinc-900/40 border border-white/5 p-8 rounded-3xl group hover:border-purple-500/20 transition-all flex flex-col justify-between">
+                <div class="space-y-4">
+                    <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Projekt // 02</span>
+                    <h2 class="text-2xl font-bold uppercase text-white">DarkCanvas</h2>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Ein Experiment mit Ästhetik und Design. Entstanden in einer Phase des Suchens und des ständigen Ausprobierens verschiedener Pfade.
+                    </p>
+                </div>
+                <div class="mt-8">
+                    <a href="https://booksapplications.github.io/darkcanvas/" target="_blank" class="inline-block bg-white text-black text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-purple-400 transition-all">
+                        Zum Archiv-Projekt →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full pt-8 border-t border-white/5 text-[10px] text-zinc-600 uppercase tracking-widest flex justify-between">
+        <div>ProjectZWiM // Archiv</div>
+        <div>© 2026</div>
+    </footer>
+
+</body>
+</html>
