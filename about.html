@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>About // ProjectZWiM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+        
+        body { 
+            background-color: #09090b; 
+            color: #f4f4f5; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden; 
+        }
+        .serif-italic { 
+            font-family: 'Instrument Serif', serif; 
+            font-style: italic; 
+        }
+        .nav-link { 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 0.25em; 
+            color: #71717a; 
+            transition: color 0.3s; 
+        }
+        .nav-link:hover { 
+            color: #c084fc; 
+        }
+        .glow-accent {
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-8 md:p-16 selection:bg-purple-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <a href="index.html" class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
+                PROJECT<span class="text-purple-400">ZWIM</span><span class="text-purple-500">.</span>
+            </a>
+            <p class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 font-bold mt-0.5">Zwei Welten in Mir</p>
+        </div>
+        
+        <nav class="flex items-center gap-8">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#archive" class="nav-link">Archive</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="my-20 max-w-3xl">
+        <div class="inline-block bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1.5 rounded-full mb-8">
+            Hintergrund & Philosophie
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-black tracking-tight uppercase leading-none mb-10">
+            Was hinter<br>
+            <span class="serif-italic text-purple-400 lowercase font-normal tracking-normal text-6xl md:text-8xl glow-accent">ProjectZWiM</span> steht.
+        </h1>
+        
+        <div class="space-y-6 text-zinc-400 text-sm md:text-base leading-relaxed font-light">
+            <p>
+                Der Name <strong class="text-white font-medium">ProjectZWiM</strong> steht für <span class="italic text-purple-300">„Zwei Welten in Mir“</span>. Auf der einen Seite den klaren, strukturierten Code und die Technik, auf der anderen Seite die kreative Freiheit und das Ausprobieren von Ideen ohne starre Grenzen.
+            </p>
+            <p>
+                Frühere Projekte sind oft daran gescheitert, dass der Spaß verloren ging, sobald Druck oder künstliche Erwartungen ins Spiel kamen. Dinge landeten in der Schublade oder wurden vergessen, weil sie nicht mehr echt wirkten.
+            </p>
+            <p>
+                Das hier ist der Gegenentwurf dazu: <strong class="text-white font-medium">Keine festen Regeln, kein Release-Druck und kein Zwang.</strong> Wenn eine Idee entsteht, wird sie gebaut. Wenn nicht, passiert rein gar nichts. Einfach pure Freude am Erschaffen und Coden, ganz nach eigener Fülle und Lust.
+            </p>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-white/5 text-[10px] text-zinc-600 uppercase tracking-widest">
+        <div>
+            ProjectZWiM // Entwickelt nach eigener Fülle & Lust.
+        </div>
+        <div class="text-zinc-500">
+            © 2026 ProjectZWiM
+        </div>
+    </footer>
+
+</body>
+</html>
