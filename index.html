@@ -108,12 +108,12 @@
                 </p>
             </div>
 
-            <!-- Rechter Bereich: Neues Tool Promo Card mit Schließen-Button -->
-            <div id="promo-banner" class="lg:col-span-5">
-                <div class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-8 md:p-10 backdrop-blur-xl relative overflow-hidden shadow-2xl group hover:border-purple-500/40 transition-all duration-300">
+            <!-- Rechter Bereich: Neues Tool Promo Card -->
+            <div class="lg:col-span-5">
+                <div id="promo-card" class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-8 md:p-10 backdrop-blur-xl relative overflow-hidden shadow-2xl group hover:border-purple-500/40 transition-all duration-300">
                     
                     <!-- Dezenter Schließen-Button ("X") -->
-                    <button onclick="closePromoBanner()" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-300 transition-colors w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-xs font-mono" title="Ausblenden">
+                    <button onclick="closePromoBanner()" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-300 transition-colors w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-xs font-mono z-10" title="Ausblenden">
                         ✕
                     </button>
 
@@ -136,9 +136,9 @@
                     </p>
 
                     <div class="flex flex-col gap-4 pt-4 border-t border-zinc-800">
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] text-zinc-500 font-light">Keine Gewähr oder Haftung • Kann Fehler machen</span>
-                            <a href="https://projectzwim.github.io/guardian/" class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-purple-600/20">
+                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                            <span class="text-[9px] text-zinc-500 font-light leading-snug max-w-[200px]">Ohne Gewähr oder Haftung. Kann Fehler machen.</span>
+                            <a href="https://projectzwim.github.io/guardian/" class="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-purple-600/20 whitespace-nowrap">
                                 Tool öffnen →
                             </a>
                         </div>
@@ -190,15 +190,15 @@
             }, 1200);
         }
 
-        // Funktion zum temporären Schließen des Banners in der Session (erscheint beim Reload wieder)
+        // Funktion zum Schließen der Promo-Karte für die aktuelle Session (erscheint beim Reload wieder)
         function closePromoBanner() {
-            const banner = document.getElementById('promo-banner');
-            banner.style.transition = 'all 0.4s ease';
-            banner.style.opacity = '0';
-            banner.style.transform = 'scale(0.95)';
+            const card = document.getElementById('promo-card');
+            card.style.transition = 'all 0.3s ease';
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                banner.style.display = 'none';
-            }, 400);
+                card.style.display = 'none';
+            }, 300);
         }
 
         introVideo.addEventListener('ended', endIntro);
