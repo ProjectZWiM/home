@@ -36,20 +36,16 @@
         <section class="space-y-6">
             <h1 class="text-5xl md:text-7xl font-black tracking-tight uppercase">Archive</h1>
             
-            <!-- Dezenter Info-Hinweis oben -->
-            <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 md:p-7 max-w-3xl backdrop-blur-xl relative overflow-hidden">
-                <div class="absolute -right-16 -top-16 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl"></div>
-                
-                <h3 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
-                    💡 So nutzt du das Archiv
-                </h3>
-                <p class="text-zinc-400 text-xs md:text-sm leading-relaxed font-light mb-3">
-                    Du kannst dir alle alten Projekte ab sofort wieder anschauen! Hänge dazu bei einem geöffneten archivierten Projekt einfach <code class="bg-zinc-800 text-purple-300 px-1.5 py-0.5 rounded font-mono text-[11px]">/index_old.html</code> an die URL an. 
-                </p>
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pt-3 border-t border-zinc-800/80 text-[11px] text-zinc-500">
-                    <span>⚠️ Hinweis: Bilder, Links & Darstellung können veraltet oder fehlerhaft sein (nicht mehr gepflegt).</span>
-                    <span class="text-purple-400 whitespace-nowrap">AudioVIS läuft dauerhaft ohne Anhang.</span>
+            <!-- Sehr dezenter, schließbarer Info-Hinweis oben -->
+            <div id="archive-info-banner" class="bg-zinc-900/40 border border-zinc-800/80 rounded-xl px-5 py-4 max-w-2xl relative flex items-start justify-between gap-4 transition-all">
+                <div class="space-y-1">
+                    <p class="text-zinc-400 text-xs font-light leading-relaxed">
+                        <strong class="text-white font-medium">Hinweis zum Archiv:</strong> Ältere Projekte lassen sich meistens durch Anhängen von <code class="bg-zinc-800 text-purple-300 px-1 py-0.5 rounded font-mono text-[10px]">/index_old.html</code> aufrufen. Manche (wie AudioVIS oder Blue Edition) sind direkt erreichbar. Darstellung und Links können veraltet sein.
+                    </p>
                 </div>
+                <button onclick="closeArchiveBanner()" class="text-zinc-500 hover:text-zinc-300 transition-colors text-xs font-mono p-1 shrink-0" title="Ausblenden">
+                    ✕
+                </button>
             </div>
 
             <p class="text-zinc-400 max-w-xl text-lg font-light pt-2">
@@ -94,12 +90,28 @@
                 </div>
             </div>
 
-            <!-- AudioVIS -->
-            <div class="bg-zinc-900/40 border border-white/5 p-8 rounded-3xl group hover:border-purple-500/20 transition-all flex flex-col justify-between md:col-span-2">
+            <!-- DarkCanvas: Blue Edition -->
+            <div class="bg-zinc-900/40 border border-white/5 p-8 rounded-3xl group hover:border-purple-500/20 transition-all flex flex-col justify-between">
                 <div class="space-y-4">
                     <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Projekt // 03</span>
+                    <h2 class="text-2xl font-bold uppercase text-white">DarkCanvas // Blue Edition</h2>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Ein komplettes Farbumstyling für Minecraft 1.21.1 – alles gehalten in kühlen Blautönen mit individuellem Custom-UI und passenden Akzenten.
+                    </p>
+                </div>
+                <div class="mt-8">
+                    <a href="https://booksapplications.github.io/darkcanvas/blue-edition/" target="_blank" class="inline-block bg-white text-black text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-full hover:bg-purple-400 transition-all">
+                        Zum Archiv-Projekt →
+                    </a>
+                </div>
+            </div>
+
+            <!-- AudioVIS -->
+            <div class="bg-zinc-900/40 border border-white/5 p-8 rounded-3xl group hover:border-purple-500/20 transition-all flex flex-col justify-between">
+                <div class="space-y-4">
+                    <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Projekt // 04</span>
                     <h2 class="text-2xl font-bold uppercase text-white">AudioVIS</h2>
-                    <p class="text-zinc-400 text-sm leading-relaxed max-w-2xl">
+                    <p class="text-zinc-400 text-sm leading-relaxed">
                         Musikerkennung neugedacht – entwickelt vor einer entscheidenden persönlichen Erkenntnis. Das Konzept und die dynamischen Ansätze wurden eingefroren und ins Archiv überführt.
                     </p>
                 </div>
@@ -118,6 +130,18 @@
         <div>ProjectZWiM // Archiv</div>
         <div>© 2026</div>
     </footer>
+
+    <script>
+        function closeArchiveBanner() {
+            const banner = document.getElementById('archive-info-banner');
+            banner.style.transition = 'all 0.3s ease';
+            banner.style.opacity = '0';
+            banner.style.transform = 'translateY(-6px)';
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+        }
+    </script>
 
 </body>
 </html>
