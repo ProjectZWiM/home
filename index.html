@@ -43,22 +43,14 @@
             align-items: center;
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 1;
+            overflow: hidden;
         }
 
         #intro-video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Standard für Smartphones (Handyformat) */
-        }
-
-        /* Für größere Bildschirme (Tablet & Computer) dynamisch anpassen, damit es im Handyformat bleibt */
-        @media (min-width: 768px) {
-            #intro-video {
-                width: auto;
-                height: 100%;
-                max-width: 100vw;
-                object-fit: contain;
-            }
+            /* Füllt den Bildschirm komplett aus, zieht das Handyformat auf größeren Screens in die Länge */
+            object-fit: fill; 
         }
 
         .fade-out {
@@ -66,7 +58,6 @@
             pointer-events: none;
         }
 
-        /* Hauptseite anfangs unsichtbar/uninteraktiv für den Übergang */
         #main-content {
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -131,21 +122,17 @@
         const introVideo = document.getElementById('intro-video');
         const mainContent = document.getElementById('main-content');
 
-        // Funktion zum Starten des Übergangs
         function endIntro() {
             introOverlay.classList.add('fade-out');
             mainContent.classList.add('visible');
             
-            // Nach dem Ausfaden das Video komplett aus dem DOM nehmen
             setTimeout(() => {
                 introOverlay.style.display = 'none';
             }, 1200);
         }
 
-        // Wenn das Video regulär zu Ende läuft
         introVideo.addEventListener('ended', endIntro);
 
-        // Fallback: Falls Autoplay blockiert wird oder das Video lädt, nach max. 6 Sekunden hart einblenden
         introVideo.play().catch(e => {
             console.log("Autoplay blockiert oder Fehler:", e);
             endIntro();
