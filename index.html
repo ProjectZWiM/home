@@ -31,50 +31,126 @@
         .glow-accent {
             text-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
         }
+
+        /* --- INTRO VIDEO OVERLAY --- */
+        #intro-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+        }
+
+        #intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Standard für Smartphones (Handyformat) */
+        }
+
+        /* Für größere Bildschirme (Tablet & Computer) dynamisch anpassen, damit es im Handyformat bleibt */
+        @media (min-width: 768px) {
+            #intro-video {
+                width: auto;
+                height: 100%;
+                max-width: 100vw;
+                object-fit: contain;
+            }
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        /* Hauptseite anfangs unsichtbar/uninteraktiv für den Übergang */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        #main-content.visible {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between p-8 md:p-16 selection:bg-purple-500 selection:text-white">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-            <a href="#" class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
-                PROJECT<span class="text-purple-400">ZWIM</span><span class="text-purple-500">.</span>
-            </a>
-            <p class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 font-bold mt-0.5">Zwei Welten in Mir</p>
-        </div>
-        
-        <nav class="flex items-center gap-8">
-            <a href="/home/about" class="nav-link">About</a>
-            <a href="/home/archive" class="nav-link">Archive</a>
-        </nav>
-    </header>
+    <!-- INTRO VIDEO OVERLAY -->
+    <div id="intro-overlay">
+        <video id="intro-video" src="37371.mp4" playsinline muted autoplay></video>
+    </div>
 
-    <!-- HERO SECTION -->
-    <main class="my-20 max-w-4xl">
-        <div class="inline-block bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1.5 rounded-full mb-8">
-            Frei von Zwang & Release-Druck
-        </div>
-        
-        <h1 class="text-6xl md:text-8xl font-black tracking-tight uppercase leading-none mb-8">
-            Keine Regeln.<br>
-            <span class="serif-italic text-purple-400 lowercase font-normal tracking-normal text-7xl md:text-9xl glow-accent">nur erschaffen.</span>
-        </h1>
-        
-        <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-2xl font-light">
-            Eine persönliche Sammlung von Projekten, Code und Experimenten. Hier passiert alles ohne festen Rhythmus oder Erwartungsdruck – einfach das, worauf gerade Lust besteht und was sich richtig anfühlt.
-        </p>
-    </main>
+    <div id="main-content" class="min-h-screen flex flex-col justify-between contents-wrapper">
+        <!-- HEADER / NAVIGATION -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <a href="#" class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
+                    PROJECT<span class="text-purple-400">ZWIM</span><span class="text-purple-500">.</span>
+                </a>
+                <p class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 font-bold mt-0.5">Zwei Welten in Mir</p>
+            </div>
+            
+            <nav class="flex items-center gap-8">
+                <a href="/home/about" class="nav-link">About</a>
+                <a href="/home/archive" class="nav-link">Archive</a>
+            </nav>
+        </header>
 
-    <!-- FOOTER -->
-    <footer class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-white/5 text-[10px] text-zinc-600 uppercase tracking-widest">
-        <div>
-            ProjectZWiM // Entwickelt nach eigener Fülle & Lust.
-        </div>
-        <div class="text-zinc-500">
-            © 2026 ProjectZWiM
-        </div>
-    </footer>
+        <!-- HERO SECTION -->
+        <main class="my-20 max-w-4xl">
+            <div class="inline-block bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1.5 rounded-full mb-8">
+                Frei von Zwang & Release-Druck
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-black tracking-tight uppercase leading-none mb-8">
+                Keine Regeln.<br>
+                <span class="serif-italic text-purple-400 lowercase font-normal tracking-normal text-7xl md:text-9xl glow-accent">nur erschaffen.</span>
+            </h1>
+            
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-2xl font-light">
+                Eine persönliche Sammlung von Projekten, Code und Experimenten. Hier passiert alles ohne festen Rhythmus oder Erwartungsdruck – einfach das, worauf gerade Lust besteht und was sich richtig anfühlt.
+            </p>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 border-t border-white/5 text-[10px] text-zinc-600 uppercase tracking-widest">
+            <div>
+                ProjectZWiM // Entwickelt nach eigener Fülle & Lust.
+            </div>
+            <div class="text-zinc-500">
+                © 2026 ProjectZWiM
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const introOverlay = document.getElementById('intro-overlay');
+        const introVideo = document.getElementById('intro-video');
+        const mainContent = document.getElementById('main-content');
+
+        // Funktion zum Starten des Übergangs
+        function endIntro() {
+            introOverlay.classList.add('fade-out');
+            mainContent.classList.add('visible');
+            
+            // Nach dem Ausfaden das Video komplett aus dem DOM nehmen
+            setTimeout(() => {
+                introOverlay.style.display = 'none';
+            }, 1200);
+        }
+
+        // Wenn das Video regulär zu Ende läuft
+        introVideo.addEventListener('ended', endIntro);
+
+        // Fallback: Falls Autoplay blockiert wird oder das Video lädt, nach max. 6 Sekunden hart einblenden
+        introVideo.play().catch(e => {
+            console.log("Autoplay blockiert oder Fehler:", e);
+            endIntro();
+        });
+    </script>
 
 </body>
 </html>
