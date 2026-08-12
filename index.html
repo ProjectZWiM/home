@@ -65,8 +65,8 @@
             opacity: 1;
         }
 
-        /* Slide-Animation für News-Wechsel */
-        .news-slide {
+        /* Slide-Animation für Inhalte */
+        .content-slide {
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
     </style>
@@ -94,7 +94,7 @@
             </nav>
         </header>
 
-        <!-- HERO SECTION MIT NEWS-BOX RECHTS -->
+        <!-- HERO SECTION MIT ZWEI FELDERN RECHTS -->
         <main class="my-20 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <!-- Linker Bereich: Main Intro -->
@@ -113,30 +113,54 @@
                 </p>
             </div>
 
-            <!-- Rechter Bereich: Wechselnde News-Box -->
-            <div class="lg:col-span-5">
-                <div id="news-card" class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-8 md:p-10 backdrop-blur-xl relative overflow-hidden shadow-2xl group hover:border-purple-500/40 transition-all duration-300">
-                    
-                    <!-- Dezenter Schließen-Button ("X") -->
-                    <button onclick="closeNewsBanner()" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-300 transition-colors w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-xs font-mono z-10" title="Ausblenden">
-                        ✕
-                    </button>
+            <!-- Rechter Bereich: Die zwei neuen Felder (News & Projekte) -->
+            <div class="lg:col-span-5 space-y-6">
+                
+                <!-- FELD 1: NEWS -->
+                <div>
+                    <div class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-2 px-1">News</div>
+                    <div class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl group hover:border-purple-500/40 transition-all duration-300">
+                        
+                        <!-- Dezenter Glow-Effekt im Hintergrund -->
+                        <div class="absolute -right-20 -top-20 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl group-hover:bg-purple-600/20 transition-all"></div>
 
-                    <!-- Dezenter Glow-Effekt im Hintergrund -->
-                    <div class="absolute -right-20 -top-20 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl group-hover:bg-purple-600/20 transition-all"></div>
+                        <!-- CONTAINER FÜR DIE WECHSELNDEN NEWS -->
+                        <div id="news-content-area" class="content-slide">
+                            <!-- Wird per JS dynamisch befüllt -->
+                        </div>
 
-                    <!-- CONTAINER FÜR DIE WECHSELNDEN INHALTE -->
-                    <div id="news-content-area" class="news-slide">
-                        <!-- Wird per JS dynamisch befüllt -->
+                        <!-- Indikatoren / Steuerungs-Dots unten -->
+                        <div class="flex items-center justify-center gap-2 mt-6 pt-4 border-t border-zinc-800/60">
+                            <button onclick="switchNews(0)" id="news-dot-0" class="w-2 h-2 rounded-full bg-purple-500 transition-all" title="Zu News 1"></button>
+                            <button onclick="switchNews(1)" id="news-dot-1" class="w-2 h-2 rounded-full bg-zinc-700 transition-all" title="Zu News 2"></button>
+                            <button onclick="switchNews(2)" id="news-dot-2" class="w-2 h-2 rounded-full bg-zinc-700 transition-all" title="Zu News 3"></button>
+                        </div>
+
                     </div>
-
-                    <!-- Indikatoren / Steuerungs-Dots unten -->
-                    <div class="flex items-center justify-center gap-2 mt-6 pt-4 border-t border-zinc-800/60">
-                        <button onclick="switchNews(0)" id="dot-0" class="w-2 h-2 rounded-full bg-purple-500 transition-all" title="Zu News 1"></button>
-                        <button onclick="switchNews(1)" id="dot-1" class="w-2 h-2 rounded-full bg-zinc-700 transition-all" title="Zu News 2"></button>
-                    </div>
-
                 </div>
+
+                <!-- FELD 2: PROJEKTE (Wechselt zwischen Guardian & AuraVIS) -->
+                <div>
+                    <div class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-2 px-1">Projekte</div>
+                    <div class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl group hover:border-purple-500/40 transition-all duration-300">
+                        
+                        <!-- Dezenter Glow-Effekt im Hintergrund -->
+                        <div class="absolute -right-20 -top-20 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl group-hover:bg-purple-600/20 transition-all"></div>
+
+                        <!-- CONTAINER FÜR DIE WECHSELNDEN PROJEKTE -->
+                        <div id="project-content-area" class="content-slide">
+                            <!-- Wird per JS dynamisch befüllt -->
+                        </div>
+
+                        <!-- Indikatoren / Steuerungs-Dots unten -->
+                        <div class="flex items-center justify-center gap-2 mt-6 pt-4 border-t border-zinc-800/60">
+                            <button onclick="switchProject(0)" id="proj-dot-0" class="w-2 h-2 rounded-full bg-purple-500 transition-all" title="Zu Projekt 1"></button>
+                            <button onclick="switchProject(1)" id="proj-dot-1" class="w-2 h-2 rounded-full bg-zinc-700 transition-all" title="Zu Projekt 2"></button>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
         </main>
@@ -160,7 +184,7 @@
         // Cooldown-Zeitspanne auf 4 Tage gesetzt (4 * 24 * 60 * 60 * 1000 ms)
         const INTRO_COOLDOWN = 4 * 24 * 60 * 60 * 1000;
 
-        // News-Daten definiert
+        // News-Daten (3 Slides inklusive AuraVIS)
         const newsSlides = [
             {
                 badge: "Neu • VFULL_0.0.1",
@@ -172,48 +196,76 @@
                 btnLink: "https://projectzwim.github.io/guardian/"
             },
             {
+                badge: "Neu • AuraVIS",
+                date: "12.08.2026",
+                title: "🎵 AuraVIS SoundLab",
+                text: "Der neue client-seitige Audio-Visualisierer ist da! Zieh deine FLAC-, MP3- oder WAV-Dateien in den Browser und erlebe Musik visuell.",
+                note: "100% lokal, ohne Server-Upload.",
+                btnText: "AuraVIS öffnen →",
+                btnLink: "https://projectzwim.github.io/auravis/"
+            },
+            {
                 badge: "Archiv • Einblicke",
                 date: "Update",
                 title: "📦 Jetzt das Archiv entdecken!",
-                text: "Auch wenn die Projekte im Archiv nicht mehr gepflegt werden, kannst du sie ab sofort anschauen: Einfach bei einem geöffneten archivierten Projekt /index_old.html anhängen. (Hinweis: Bilder, Links & Darstellung können veraltet/fehlerhaft sein. AudioVIS ist dauerhaft ohne Anhang verfügbar).",
+                text: "Auch wenn die Projekte im Archiv nicht mehr gepflegt werden, kannst du sie ab sofort anschauen: Einfach bei einem geöffneten archivierten Projekt /index_old.html anhängen.",
                 note: "Alte Experimente neu erleben.",
                 btnText: "Zum Archiv →",
                 btnLink: "https://projectzwim.github.io/home/archive"
             }
         ];
 
-        let currentSlide = 0;
-        let newsInterval;
+        // Projekt-Daten (Wechselt zwischen Guardian & AuraVIS)
+        const projectSlides = [
+            {
+                badge: "Tool • Sicherheit",
+                title: "🛡️ ZWiM-Guardian",
+                text: "Sichere Passwörter lokal generieren und prüfen – schnell, datenschutzfreundlich und direkt im Browser.",
+                btnText: "Zum Guardian →",
+                btnLink: "https://projectzwim.github.io/guardian/"
+            },
+            {
+                badge: "Tool • Audio",
+                title: "✨ AuraVIS",
+                text: "Musik im Browser visualisieren mit der Web Audio API. Zieh deine Audio-Dateien einfach per Drag & Drop hinein.",
+                btnText: "Zu AuraVIS →",
+                btnLink: "https://projectzwim.github.io/auravis/"
+            }
+        ];
 
-        function renderSlide(index) {
+        let currentNewsSlide = 0;
+        let currentProjSlide = 0;
+        let newsInterval, projInterval;
+
+        // Render News
+        function renderNewsSlide(index) {
             const area = document.getElementById('news-content-area');
             const data = newsSlides[index];
 
-            // Fade out
             area.style.opacity = '0';
             area.style.transform = 'translateY(6px)';
 
             setTimeout(() => {
                 area.innerHTML = `
-                    <div class="flex items-center gap-3 mb-4">
+                    <div class="flex items-center gap-3 mb-3">
                         <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                             ${data.badge}
                         </span>
                         <span class="text-xs text-zinc-500 font-mono">${data.date}</span>
                     </div>
 
-                    <h2 class="text-2xl font-bold text-white mb-3 flex items-center gap-2">
+                    <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                         ${data.title}
                     </h2>
                     
-                    <p class="text-zinc-300 text-sm leading-relaxed mb-6 font-light">
+                    <p class="text-zinc-300 text-xs md:text-sm leading-relaxed mb-4 font-light">
                         ${data.text}
                     </p>
 
-                    <div class="flex flex-col gap-4 pt-2">
-                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                            <span class="text-[9px] text-zinc-500 font-light leading-snug max-w-[210px]">${data.note}</span>
-                            <a href="${data.btnLink}" class="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-purple-600/20 whitespace-nowrap">
+                    <div class="flex flex-col gap-3 pt-2">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                            <span class="text-[9px] text-zinc-500 font-light leading-snug max-w-[190px]">${data.note}</span>
+                            <a href="${data.btnLink}" class="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all shadow-lg shadow-purple-600/25 whitespace-nowrap">
                                 ${data.btnText}
                             </a>
                         </div>
@@ -221,29 +273,86 @@
                 `;
 
                 // Dots aktualisieren
-                document.getElementById('dot-0').className = index === 0 ? "w-2 h-2 rounded-full bg-purple-500 transition-all" : "w-2 h-2 rounded-full bg-zinc-700 transition-all";
-                document.getElementById('dot-1').className = index === 1 ? "w-2 h-2 rounded-full bg-purple-500 transition-all" : "w-2 h-2 rounded-full bg-zinc-700 transition-all";
+                for(let i = 0; i < 3; i++) {
+                    document.getElementById(`news-dot-${i}`).className = i === index ? "w-2 h-2 rounded-full bg-purple-500 transition-all" : "w-2 h-2 rounded-full bg-zinc-700 transition-all";
+                }
 
-                // Fade in
+                area.style.opacity = '1';
+                area.style.transform = 'translateY(0)';
+            }, 250);
+        }
+
+        // Render Projects
+        function renderProjectSlide(index) {
+            const area = document.getElementById('project-content-area');
+            const data = projectSlides[index];
+
+            area.style.opacity = '0';
+            area.style.transform = 'translateY(6px)';
+
+            setTimeout(() => {
+                area.innerHTML = `
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                            ${data.badge}
+                        </span>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                        ${data.title}
+                    </h2>
+                    
+                    <p class="text-zinc-300 text-xs md:text-sm leading-relaxed mb-4 font-light">
+                        ${data.text}
+                    </p>
+
+                    <div class="pt-2 flex justify-end">
+                        <a href="${data.btnLink}" class="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all shadow-lg shadow-purple-600/25 whitespace-nowrap">
+                            ${data.btnText}
+                        </a>
+                    </div>
+                `;
+
+                // Dots aktualisieren
+                for(let i = 0; i < 2; i++) {
+                    document.getElementById(`proj-dot-${i}`).className = i === index ? "w-2 h-2 rounded-full bg-purple-500 transition-all" : "w-2 h-2 rounded-full bg-zinc-700 transition-all";
+                }
+
                 area.style.opacity = '1';
                 area.style.transform = 'translateY(0)';
             }, 250);
         }
 
         function switchNews(index) {
-            currentSlide = index;
-            renderSlide(currentSlide);
-            resetTimer();
+            currentNewsSlide = index;
+            renderNewsSlide(currentNewsSlide);
+            resetNewsTimer();
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % newsSlides.length;
-            renderSlide(currentSlide);
+        function nextNews() {
+            currentNewsSlide = (currentNewsSlide + 1) % newsSlides.length;
+            renderNewsSlide(currentNewsSlide);
         }
 
-        function resetTimer() {
+        function resetNewsTimer() {
             clearInterval(newsInterval);
-            newsInterval = setInterval(nextSlide, 7000); // Wechselt alle 7 Sekunden automatisch
+            newsInterval = setInterval(nextNews, 7000);
+        }
+
+        function switchProject(index) {
+            currentProjSlide = index;
+            renderProjectSlide(currentProjSlide);
+            resetProjTimer();
+        }
+
+        function nextProject() {
+            currentProjSlide = (currentProjSlide + 1) % projectSlides.length;
+            renderProjectSlide(currentProjSlide);
+        }
+
+        function resetProjTimer() {
+            clearInterval(projInterval);
+            projInterval = setInterval(nextProject, 8000);
         }
 
         // Direkt beim Laden prüfen, ob das Intro in den letzten 4 Tagen bereits gezeigt wurde
@@ -256,13 +365,15 @@
                 mainContent.classList.add('visible');
             }
 
-            // News initialisieren
-            renderSlide(0);
-            resetTimer();
+            // Slides initialisieren
+            renderNewsSlide(0);
+            resetNewsTimer();
+
+            renderProjectSlide(0);
+            resetProjTimer();
         });
 
         function endIntro() {
-            // Aktuellen Zeitstempel für die 4-Tage-Sperre speichern
             localStorage.setItem('zwim_main_intro_timestamp', new Date().getTime());
 
             introOverlay.classList.add('fade-out');
@@ -271,18 +382,6 @@
             setTimeout(() => {
                 introOverlay.style.display = 'none';
             }, 1200);
-        }
-
-        // Funktion zum Schließen der News-Box für die aktuelle Session (erscheint beim Reload wieder)
-        function closeNewsBanner() {
-            clearInterval(newsInterval);
-            const card = document.getElementById('news-card');
-            card.style.transition = 'all 0.4s ease';
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                card.style.display = 'none';
-            }, 400);
         }
 
         introVideo.addEventListener('ended', endIntro);
