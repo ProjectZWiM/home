@@ -122,7 +122,24 @@
         const introVideo = document.getElementById('intro-video');
         const mainContent = document.getElementById('main-content');
 
+        // Cooldown-Zeitspanne auf 4 Tage gesetzt (4 * 24 * 60 * 60 * 1000 ms)
+        const INTRO_COOLDOWN = 4 * 24 * 60 * 60 * 1000;
+
+        // Direkt beim Laden prüfen, ob das Intro in den letzten 4 Tagen bereits gezeigt wurde
+        window.addEventListener('DOMContentLoaded', () => {
+            const lastSeen = localStorage.getItem('zwim_main_intro_timestamp');
+            const now = new Date().getTime();
+
+            if (lastSeen && (now - lastSeen < INTRO_COOLDOWN)) {
+                introOverlay.style.display = 'none';
+                mainContent.classList.add('visible');
+            }
+        });
+
         function endIntro() {
+            // Aktuellen Zeitstempel für die 4-Tage-Sperre speichern
+            localStorage.setItem('zwim_main_intro_timestamp', new Date().getTime());
+
             introOverlay.classList.add('fade-out');
             mainContent.classList.add('visible');
             
@@ -135,7 +152,13 @@
 
         introVideo.play().catch(e => {
             console.log("Autoplay blockiert oder Fehler:", e);
-            endIntro();
+            const lastSeen = localStorage.getItem('zwim_main_intro_timestamp');
+            if (lastSeen) {
+                introOverlay.style.display = 'none';
+                mainContent.classList.add('visible');
+            } else {
+                endIntro();
+            }
         });
     </script>
 
