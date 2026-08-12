@@ -49,7 +49,6 @@
         #intro-video {
             width: 100%;
             height: 100%;
-            /* Füllt den Bildschirm komplett aus, zieht das Handyformat auf größeren Screens in die Länge */
             object-fit: fill; 
         }
 
@@ -90,20 +89,55 @@
             </nav>
         </header>
 
-        <!-- HERO SECTION -->
-        <main class="my-20 max-w-4xl">
-            <div class="inline-block bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1.5 rounded-full mb-8">
-                Frei von Zwang & Release-Druck
+        <!-- HERO SECTION MIT PROJEKT-CARD RECHTS -->
+        <main class="my-20 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Linker Bereich: Main Intro -->
+            <div class="lg:col-span-7">
+                <div class="inline-block bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1.5 rounded-full mb-8">
+                    Frei von Zwang & Release-Druck
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl font-black tracking-tight uppercase leading-none mb-8">
+                    Keine Regeln.<br>
+                    <span class="serif-italic text-purple-400 lowercase font-normal tracking-normal text-7xl md:text-9xl glow-accent">nur erschaffen.</span>
+                </h1>
+                
+                <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-2xl font-light">
+                    Eine persönliche Sammlung von Projekten, Code und Experimenten. Hier passiert alles ohne festen Rhythmus oder Erwartungsdruck – einfach das, worauf gerade Lust besteht und was sich richtig anfühlt.
+                </p>
             </div>
-            
-            <h1 class="text-6xl md:text-8xl font-black tracking-tight uppercase leading-none mb-8">
-                Keine Regeln.<br>
-                <span class="serif-italic text-purple-400 lowercase font-normal tracking-normal text-7xl md:text-9xl glow-accent">nur erschaffen.</span>
-            </h1>
-            
-            <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-2xl font-light">
-                Eine persönliche Sammlung von Projekten, Code und Experimenten. Hier passiert alles ohne festen Rhythmus oder Erwartungsdruck – einfach das, worauf gerade Lust besteht und was sich richtig anfühlt.
-            </p>
+
+            <!-- Rechter Bereich: Neues Tool (ZWiM-Guardian Promo) -->
+            <div class="lg:col-span-5">
+                <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl group hover:border-purple-500/40 transition-all duration-300">
+                    <!-- Dezenter Glow-Effekt im Hintergrund -->
+                    <div class="absolute -right-20 -top-20 w-40 h-40 bg-purple-600/10 rounded-full blur-3xl group-hover:bg-purple-600/20 transition-all"></div>
+
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Neu • VFULL_0.0.1
+                        </span>
+                        <span class="text-[10px] text-zinc-500 font-mono">11.08.2026</span>
+                    </div>
+
+                    <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                        🛡️ ZWiM-Guardian
+                    </h2>
+                    
+                    <p class="text-zinc-400 text-xs md:text-sm leading-relaxed mb-6 font-light">
+                        Ein lokaler, Open-Source, effizienter sowie sicherer Passwort-Generator und Passwort-Checker. Entwickelt als Teil der ZWiM Projekt-Familie.
+                    </p>
+
+                    <div class="flex items-center justify-between pt-4 border-t border-zinc-800">
+                        <span class="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">100% lokal & sicher</span>
+                        <a href="https://projectzwim.github.io/guardian/" target="_blank" class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all shadow-lg shadow-purple-600/20">
+                            Tool öffnen →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </main>
 
         <!-- FOOTER -->
