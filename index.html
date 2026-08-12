@@ -108,32 +108,40 @@
                 </p>
             </div>
 
-            <!-- Rechter Bereich: Neues Tool (ZWiM-Guardian Promo) -->
-            <div class="lg:col-span-5">
-                <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl group hover:border-purple-500/40 transition-all duration-300">
-                    <!-- Dezenter Glow-Effekt im Hintergrund -->
-                    <div class="absolute -right-20 -top-20 w-40 h-40 bg-purple-600/10 rounded-full blur-3xl group-hover:bg-purple-600/20 transition-all"></div>
+            <!-- Rechter Bereich: Neues Tool Promo Card mit Schließen-Button -->
+            <div id="promo-banner" class="lg:col-span-5">
+                <div class="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-8 md:p-10 backdrop-blur-xl relative overflow-hidden shadow-2xl group hover:border-purple-500/40 transition-all duration-300">
+                    
+                    <!-- Dezenter Schließen-Button ("X") -->
+                    <button onclick="closePromoBanner()" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-300 transition-colors w-7 h-7 flex items-center justify-center rounded-lg hover:bg-zinc-800 text-xs font-mono" title="Ausblenden">
+                        ✕
+                    </button>
 
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[9px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                    <!-- Dezenter Glow-Effekt im Hintergrund -->
+                    <div class="absolute -right-20 -top-20 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl group-hover:bg-purple-600/20 transition-all"></div>
+
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                             Neu • VFULL_0.0.1
                         </span>
-                        <span class="text-[10px] text-zinc-500 font-mono">11.08.2026</span>
+                        <span class="text-xs text-zinc-500 font-mono">11.08.2026</span>
                     </div>
 
-                    <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                    <h2 class="text-2xl font-bold text-white mb-3 flex items-center gap-2">
                         🛡️ ZWiM-Guardian
                     </h2>
                     
-                    <p class="text-zinc-400 text-xs md:text-sm leading-relaxed mb-6 font-light">
-                        Ein lokaler, Open-Source, effizienter sowie sicherer Passwort-Generator und Passwort-Checker. Entwickelt als Teil der ZWiM Projekt-Familie.
+                    <p class="text-zinc-300 text-sm leading-relaxed mb-6 font-light">
+                        Ein lokaler, Open-Source, effizienter sowie sicherer Passwort-Generator und Passwort-Checker als Teil der ZWiM Projekt-Familie.
                     </p>
 
-                    <div class="flex items-center justify-between pt-4 border-t border-zinc-800">
-                        <span class="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">100% lokal & sicher</span>
-                        <a href="https://projectzwim.github.io/guardian/" target="_blank" class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all shadow-lg shadow-purple-600/20">
-                            Tool öffnen →
-                        </a>
+                    <div class="flex flex-col gap-4 pt-4 border-t border-zinc-800">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] text-zinc-500 font-light">Keine Gewähr oder Haftung • Kann Fehler machen</span>
+                            <a href="https://projectzwim.github.io/guardian/" class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-purple-600/20">
+                                Tool öffnen →
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -180,6 +188,17 @@
             setTimeout(() => {
                 introOverlay.style.display = 'none';
             }, 1200);
+        }
+
+        // Funktion zum temporären Schließen des Banners in der Session (erscheint beim Reload wieder)
+        function closePromoBanner() {
+            const banner = document.getElementById('promo-banner');
+            banner.style.transition = 'all 0.4s ease';
+            banner.style.opacity = '0';
+            banner.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 400);
         }
 
         introVideo.addEventListener('ended', endIntro);
