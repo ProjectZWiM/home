@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjectZWiM // Device Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body { 
+            background-color: #09090b; 
+            color: #f4f4f5; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden; 
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between p-6 sm:p-10 md:p-16 selection:bg-purple-500 selection:text-white">
+
+    <!-- MOBILER VIDEO CONTAINER (Wird nur auf Mobilgeräten angezeigt) -->
+    <div id="mobile-view" class="fixed inset-0 bg-black z-50 flex items-center justify-center hidden">
+        <video id="device-video" src="37376.mp4" playsinline muted autoplay class="w-full h-full object-fill"></video>
+    </div>
+
+    <!-- TABLET & DESKTOP CONTAINER (Geräteinfos) -->
+    <div id="desktop-view" class="w-full max-w-5xl mx-auto space-y-10 hidden">
+        <header class="flex justify-between items-center border-b border-zinc-800 pb-6">
+            <div>
+                <a href="index.html" class="text-2xl font-black tracking-tight text-white flex items-center gap-2">
+                    PROJECT<span class="text-purple-400">ZWIM</span><span class="text-purple-500">.</span>
+                </a>
+                <p class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 font-bold mt-0.5">Device Diagnostics // Desktop & Tablet</p>
+            </div>
+            <span class="bg-purple-500/10 text-purple-400 border border-purple-500/20 text-xs font-mono px-3 py-1.5 rounded-full">
+                Modus: System-Analyse
+            </span>
+        </header>
+
+        <main class="space-y-6">
+            <div class="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl p-6 md:p-8 backdrop-blur-xl">
+                <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    💻 Erkannte Geräte- & Umgebungsdaten
+                </h2>
+                <div id="info-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <!-- Wird per JS befüllt -->
+                </div>
+            </div>
+        </main>
+
+        <footer class="pt-8 border-t border-white/5 text-[10px] text-zinc-600 uppercase tracking-widest flex justify-between">
+            <div>ProjectZWiM // Diagnostics</div>
+            <div>© 2026</div>
+        </footer>
+    </div>
+
+    <script>
+        // Funktion zur robusten Geräte-Erkennung (Handy vs. Tablet/Desktop)
+        function checkDeviceType() {
+            const ua = navigator.userAgent;
+            const isTouch = navigator.maxTouchPoints > 0;
+            
+            // Erkennung typischer kleiner mobiler Bildschirme oder UA-Kennungen
+            const isMobileUA = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+            const isTabletUA = /iPad|Tablet|Kindle/i.test(ua);
+            
+            // Ein Gerät gilt als Mobile, wenn es eine mobile Kennung hat und kein Tablet ist,
+            // oder wenn die Bildschirmbreite typisch für Smartphones ist.
+            const isSmallScreen = window.innerWidth <= 768;
+
+            if ((isMobileUA && !isTabletUA) || (isSmallScreen && isTouch && !isTabletUA)) {
+                return 'mobile';
+            }
+            return 'desktop';
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const deviceType = checkDeviceType();
+
+            if (deviceType === 'mobile') {
+                // Mobile Ansicht: Video abspielen und am Ende stehen bleiben
+                const mobileView = document.getElementById('mobile-view');
+                const video = document.getElementById('device-video');
+                
+                mobileView.classList.remove('hidden');
+
+                video.addEventListener('ended', () => {
+                    // Video pausiert automatisch auf dem letzten Frame und bleibt stehen
+                    video.pause();
+                });
+
+                video.play().catch(e => {
+                    console.log("Autoplay blockiert:", e);
+                    // Fallback: Kontrollleisten einblenden, falls Autoplay fehlschlägt
+                    video.controls = true;
+                });
+            } else {
+                // Desktop / Tablet Ansicht: Systemdaten ermitteln und anzeigen
+                const desktopView = document.getElementById('desktop-view');
+                desktopView.classList.remove('hidden');
+
+                const infoGrid = document.getElementById('info-grid');
+
+                const data = [
+                    { label: "Betriebssystem & UA", value: navigator.userAgent },
+                    { label: "Plattform", value: navigator.platform || "Unbekannt" },
+                    { label: "Sprache", value: navigator.language || "Unbekannt" },
+                    { label: "Bildschirmauflösung", value: `${window.screen.width} x ${window.screen.height} px` },
+                    { label: "Fenstergröße (Viewport)", value: `${window.innerWidth} x ${window.innerHeight} px` },
+                    { label: "Farb-Tiefe", value: `${window.screen.colorDepth} bit` },
+                    { label: "Hardware Threads (CPU Cores)", value: navigator.hardwareConcurrency ? `${navigator.hardwareConcurrency} Kerne` : "Nicht verfügbar" },
+                    { label: "Arbeitsspeicher (RAM ca.)", value: navigator.deviceMemory ? `~${navigator.deviceMemory} GB` : "Nicht verfügbar" },
+                    { label: "Touch-Unterstützung", value: navigator.maxTouchPoints > 0 ? `Ja (${navigator.maxTouchPoints} Punkte)` : "Nein" },
+                    { label: "Online-Status", value: navigator.onLine ? "Online" : "Offline" },
+                    { label: "Cookies aktiviert", value: navigator.cookieEnabled ? "Ja" : "Nein" },
+                    { label: "Zeitzone", value: Intl.DateTimeFormat().resolvedOptions().timeZone }
+                ];
+
+                infoGrid.innerHTML = data.map(item => `
+                    <div class="bg-zinc-900/80 border border-zinc-800/60 p-4 rounded-xl flex flex-col justify-between">
+                        <span class="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-1">${item.label}</span>
+                        <span class="text-zinc-200 mono text-xs break-all">${item.value}</span>
+                    </div>
+                `).join('');
+            }
+        });
+    </script>
+
+</body>
+</html>
